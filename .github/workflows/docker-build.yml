@@ -1,0 +1,64 @@
+name: Docker Build Test
+
+on:
+  push:
+    branches:
+      - main
+      - copilot/docker-deployment-support
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-server:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build server Docker image
+        run: |
+          cd server
+          docker build -t all-api-hub-server:test .
+
+  build-web:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build web Docker image
+        run: |
+          cd web-app
+          docker build -t all-api-hub-web:test .
+
+  test-docker-compose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create .env file
+        run: |
+          cp .env.example .env
+
+      - name: Test docker-compose build
+        run: |
+          docker-compose build
+
+      - name: Test docker-compose up
+        run: |
+          docker-compose up -d
+
+      - name: Wait for services
+        run: |
+          sleep 10
+
+      - name: Check services are running
+        run: |
+          docker-compose ps
+          curl -f http://localhost:3000/health || exit 1
+
+      - name: Cleanup
+        run: |
+          docker-compose down -v

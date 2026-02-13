@@ -65,3 +65,11 @@ web-ext.config.ts
 .env
 .env.*
 public/react-devtools*
+
+# Docker deployment
+data/
+server/dist/
+server/node_modules/
+server/data/
+web-app/dist/
+web-app/node_modules/

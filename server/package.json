@@ -1,0 +1,39 @@
+{
+  "name": "all-api-hub-server",
+  "version": "3.14.0",
+  "description": "Backend server for All API Hub",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "lint": "eslint src --ext .ts",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "jsonwebtoken": "^9.0.2",
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^11.8.1",
+    "node-cron": "^3.0.3",
+    "zod": "^4.3.5",
+    "dayjs": "^1.11.13",
+    "lodash-es": "^4.17.21"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/cors": "^2.8.17",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node": "^22.10.6",
+    "@types/node-cron": "^3.0.12",
+    "@types/lodash-es": "^4.17.12",
+    "tsx": "^4.19.2",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.3"
+  }
+}
